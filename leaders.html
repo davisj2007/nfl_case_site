@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:#0a0a0a;}</style>
+
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>CASE — leaders</title>
+  <meta name="description" content="Every NFL play, measured against what the situation expected. From Jake Davis Analytics."/>
+  <link rel="canonical" href="https://case.jakedavisanalytics.com/leaders.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="CASE — Jake Davis Analytics"/>
+  <meta property="og:title" content="CASE — leaders"/>
+  <meta property="og:description" content="Every NFL play, measured against what the situation expected. From Jake Davis Analytics."/>
+  <meta property="og:url" content="https://case.jakedavisanalytics.com/leaders.html"/>
+  <meta property="og:image" content="https://case.jakedavisanalytics.com/og.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="CASE — leaders"/>
+  <meta name="twitter:description" content="Every NFL play, measured against what the situation expected. From Jake Davis Analytics."/>
+  <meta name="twitter:image" content="https://case.jakedavisanalytics.com/og.png"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&amp;family=Teko:wght@500;700&amp;display=swap"/>
+  <style>
+  /* reading text in the face the newsletter uses (SF Pro and the system stack);
+     CASE keeps Teko for headings and scores, and Orbitron in its tables */
+  body { background: #0a0a0a; color: #ffffff; margin: 0;
+         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 2400px; margin: 0 auto; padding: 8px 28px 64px; }
+  a { color: #00ffff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* the header, shaped like the newsletter header: JDA mark left, CASE lockup
+     centered, Subscribe right; then a centered nav between thin rules, the
+     current page marked by a white underline */
+  header.top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+               padding: 14px 24px; border-bottom: 1px solid #262626; }
+  header.top .left { justify-self: start; display: flex; align-items: center; }
+  header.top .right { justify-self: end; }
+  header.top .brand { font-family: Teko, Orbitron, sans-serif; font-size: 30px;
+                      letter-spacing: .12em; color: #ffffff; }
+  header.top img.brand { height: 42px; width: auto; display: block; }
+  header.top a:hover { text-decoration: none; }
+  a.subscribe { background: #00ffff; color: #0a0a0a; font-weight: 600; font-size: 15px;
+                padding: 9px 18px; border-radius: 8px; white-space: nowrap; }
+  a.subscribe:hover, a.subscribe:focus { text-decoration: none; filter: brightness(0.9); }
+  nav.case { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+             padding: 0 16px; border-bottom: 1px solid #262626; }
+  nav.case a { font-size: 17px; font-weight: 500; color: #ffffff; letter-spacing: 0;
+               padding: 16px 0 12px; border-bottom: 3px solid transparent; }
+  nav.case a:hover, nav.case a:focus { color: #00ffff; text-decoration: none; }
+  nav.case a.here { font-weight: 700; color: #ffffff; border-bottom-color: #ffffff; }
+  @media (max-width: 640px) {
+    header.top { padding: 10px 14px; }
+    header.top img.brand { height: 32px; }
+    nav.case { gap: 18px; }
+    nav.case a { font-size: 15px; }
+  }
+
+  header.score { display: flex; align-items: center; gap: 22px;
+                 flex-wrap: wrap; justify-content: center;
+                 padding: 14px 0 18px; border-bottom: 2px solid #0066ff; }
+  header.score .team { display: flex; align-items: center; gap: 12px; }
+  header.score .logo { height: 64px; }
+  header.score .abbr { font-family: Teko, Orbitron, sans-serif;
+                       font-size: 44px; color: #ffffff; }
+  header.score .pts  { font-family: Teko, Orbitron, sans-serif;
+                       font-size: 56px; color: #00ffff; min-width: 56px;
+                       text-align: center; }
+  header.score .pts.win { color: #ffff00; }
+  header.score .at   { font-size: 22px; color: #c0c0c0; }
+  header.score .meta { flex-basis: 100%; text-align: center;
+                       color: #c0c0c0; font-size: 15px; }
+
+  h1 { position: absolute; left: -9999px; }
+  h1.page { position: static; font-family: Teko, Orbitron, sans-serif;
+            color: #00ffff; font-size: 54px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .04em;
+            text-align: center; margin: 26px 0 4px; }
+  p.lede { text-align: center; color: #c0c0c0; margin: 0 auto 10px;
+           max-width: 980px; font-size: 17px; line-height: 1.45; }
+  h2 { font-family: Teko, Orbitron, sans-serif; color: #00ffff;
+       font-size: 42px; font-weight: 700; text-transform: uppercase;
+       letter-spacing: .04em; text-align: center; margin: 44px 0 14px;
+       padding-bottom: 6px; border-bottom: 1px solid #0066ff; }
+
+  .pair { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start;
+          justify-content: center; }
+  .pair > .scroll { flex: 0 0 auto; max-width: 100%; }
+  .scroll { overflow-x: auto; }
+  .sortable th { user-select: none; }
+  .filterbar { text-align: center; margin: 0 0 12px; }
+  .filterbar input { background: #16213e; color: #ffffff; border: 1px solid #0066ff;
+                     border-radius: 6px; padding: 10px 14px; width: 300px;
+                     font-family: Orbitron, sans-serif; font-size: 15px; }
+  .hint { text-align: center; color: #c0c0c0; font-size: 15px; margin: 0 0 12px; }
+  /* team links: same look at rest, underline and cyan on hover */
+  a.teamlink { color: inherit; text-decoration: none; }
+  a.teamlink:hover, a.teamlink:focus { color: #00ffff; text-decoration: underline; }
+  a.teamlink:hover .abbr { color: #00ffff; }
+  header.score .seasons { flex-basis: 100%; text-align: center; font-size: 15px;
+                          color: #c0c0c0; margin-top: 2px; }
+  header.score .seasons .sep { margin: 0 12px; color: #0066ff; }
+  .weekstrip { display: flex; gap: 10px; justify-content: center;
+               flex-wrap: wrap; margin: 12px 0 4px; }
+  .weekstrip a { font-family: Teko, Orbitron, sans-serif; font-size: 23px;
+                 letter-spacing: .04em; color: #c0c0c0; border: 1px solid #0066ff;
+                 border-radius: 6px; padding: 3px 12px; }
+  .weekstrip a.here { color: #0a0a0a; background: #00ffff; border-color: #00ffff; }
+  /* the JDA link in the nav, and the footer */
+  nav.case a.jda { display: inline-flex; align-items: center; gap: 7px; }
+  nav.case a.jda svg { vertical-align: middle; }
+  footer.jda { border-top: 1px solid #262626; margin: 64px 0 0; padding: 28px 16px 36px;
+               text-align: center; color: #c0c0c0; font-size: 15px; }
+  footer.jda .brandline { display: inline-flex; align-items: center; gap: 10px;
+                          font-size: 17px; color: #ffffff; margin-bottom: 10px; }
+  footer.jda a { color: #00ffff; text-decoration: none; }
+  footer.jda a:hover, footer.jda a:focus { text-decoration: underline; }
+  footer.jda .sep { margin: 0 10px; color: #0066ff; }
+  footer.jda .fine { font-size: 13px; margin-top: 10px; }
+  footer.jda .asof { font-size: 13px; margin: 14px 0 0; color: #ffffff;
+                     font-variant-numeric: tabular-nums; }
+  /* reading pages: what is CASE, definitions, data */
+  .prose { max-width: 820px; margin: 0 auto; font-size: 17px; line-height: 1.6; }
+  .prose p, .prose li { color: #ffffff; }
+  .prose a { color: #00ffff; }
+  .prose .soon { color: #c0c0c0; font-style: italic; }
+  .prose h3 { font-family: Teko, Orbitron, sans-serif; font-size: 30px; color: #00ffff;
+              letter-spacing: .02em; margin: 32px 0 6px; }
+  .prose em { color: #ffffff; }
+  .def { max-width: 880px; margin: 0 auto 26px; padding-bottom: 20px;
+         border-bottom: 1px solid #262626; }
+  .def h3 { font-family: Teko, Orbitron, sans-serif; font-size: 30px; color: #00ffff;
+            margin: 0 0 6px; letter-spacing: .02em; }
+  .def .plain { font-size: 17px; line-height: 1.55; color: #ffffff; margin: 0 0 10px; }
+  .def .tech { background: #16213e; border-left: 3px solid #00ffff; padding: 10px 14px;
+               font-size: 14.5px; line-height: 1.55; color: #c0c0c0; }
+  .def .tech code, .prose code, .prose pre { font-family: Consolas, Menlo, monospace; color: #ffffff; }
+  .prose pre { background: #16213e; padding: 14px 16px; overflow-x: auto; font-size: 14px;
+               border-left: 3px solid #00ffff; }
+  .prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  .prose th, .prose td { border-bottom: 1px solid #0066ff; padding: 8px 10px; text-align: left; }
+  .prose th { font-family: Teko, Orbitron, sans-serif; font-size: 19px; color: #00ffff; }
+  /* insights: number first, one reading column */
+  .reading { max-width: 880px; margin: 0 auto; }
+  h3.cat { font-family: Teko, Orbitron, sans-serif; font-size: 30px;
+           color: #ffffff; letter-spacing: .02em; margin: 28px 0 4px; }
+  .frow { display: grid; grid-template-columns: 170px 1fr; gap: 22px;
+          align-items: baseline; padding: 12px 0;
+          border-bottom: 1px solid #0066ff; }
+  .frow .num { text-align: right; }
+  .frow .num .n { display: block; font-family: Teko, Orbitron, sans-serif;
+                  font-size: 50px; line-height: .95; color: #00ffff; }
+  .frow .num.up .n { color: #00ff88; }
+  .frow .num.down .n { color: #ff6600; }
+  .frow .num .u { display: block; color: #c0c0c0; font-size: 13px;
+                  line-height: 1.3; margin-top: 2px; }
+  .frow .l { margin: 0; font-size: 19px; line-height: 1.4; color: #ffffff; }
+  .frow .d { margin: 4px 0 0; font-size: 15px; line-height: 1.45; color: #c0c0c0; }
+  .lead { max-width: 1000px; margin: 8px auto 6px; text-align: center; }
+  .lead .big { font-family: Teko, Orbitron, sans-serif; font-size: 58px;
+               line-height: 1.02; color: #ffffff; margin: 0; }
+  .lead .sub { color: #c0c0c0; font-size: 17px; margin: 8px 0 0; }
+  @media (max-width: 640px) {
+    .frow { grid-template-columns: 1fr; gap: 4px; }
+    .frow .num { text-align: left; }
+  }
+  .chart img { width: 100%; max-width: 1150px; display: block; margin: 0 auto; }
+  p.note { color: #c0c0c0; font-size: 16px; margin: -4px auto 18px;
+           max-width: 960px; text-align: center; line-height: 1.45; }
+  .empty { color: #c0c0c0; text-align: center; }
+  .gt_table { margin-left: auto !important; margin-right: auto !important; }
+
+  /* the week: one card per game */
+  /* smaller boxes, larger type inside them */
+  .games { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .game { background: #16213e; border: 1px solid #0066ff; border-radius: 8px;
+          padding: 9px 12px; min-width: 212px; max-width: 250px; }
+  .game .row { display: flex; align-items: center; gap: 8px;
+               justify-content: space-between; }
+  .game img { height: 30px; }
+  .game .nm { font-family: Teko, Orbitron, sans-serif; font-size: 27px;
+              color: #ffffff; letter-spacing: .02em; }
+  .game .sc { font-family: Teko, Orbitron, sans-serif; font-size: 27px;
+              color: #c0c0c0; }
+  .game .sc.win { color: #ffff00; }
+  .game .tag { color: #c0c0c0; font-size: 14px; margin-top: 6px;
+               border-top: 1px solid #0066ff; padding-top: 5px; line-height: 1.35; }
+  /* conference band above its four divisions */
+  h2.conf { font-size: 44px; color: #ffffff; border-bottom: 2px solid #00ffff;
+            margin-top: 52px; }
+  h3.div { font-family: Teko, Orbitron, sans-serif; color: #00ffff;
+           font-size: 31px; text-transform: uppercase; letter-spacing: .05em;
+           text-align: center; margin: 22px 0 8px; }
+  /* KPI cards */
+  .kpis { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+          margin: 6px 0 4px; }
+  .kpi { background: #16213e; border: 1px solid #0066ff; border-radius: 10px;
+         padding: 14px 20px; min-width: 176px; text-align: center; }
+  .kpi .k { font-family: Teko, Orbitron, sans-serif; color: #00ffff;
+            font-size: 22px; text-transform: uppercase; letter-spacing: .05em; }
+  .kpi .v { font-family: Teko, Orbitron, sans-serif; font-size: 52px;
+            color: #ffffff; line-height: 1.05; }
+  .kpi .s { color: #c0c0c0; font-size: 14px; line-height: 1.4; }
+  .kpi.good .v { color: #00ff88; }
+  .kpi.bad  .v { color: #ff6600; }
+  /* week selector */
+  .selbar { text-align: center; margin: 0 0 14px; }
+  .selbar select { background: #16213e; color: #ffffff; border: 1px solid #0066ff;
+                   border-radius: 6px; padding: 9px 14px; font-size: 16px;
+                   font-family: Orbitron, sans-serif; }
+</style>
+  <script>
+function caseCell(tr, i) {
+  var c = tr.children[i]; if (!c) return "";
+  var t = c.textContent.replace(/−/g, "-").replace(/,/g, "").trim();
+  var m = t.match(/-?\d+(\.\d+)?/);
+  return m ? parseFloat(m[0]) : t.toLowerCase();
+}
+function caseSortable(t) {
+  // Columns are matched by gt's header id against each body cell's
+  // "headers" attribute, NOT by position. With a spanner the header has two
+  // rows and the last one holds only the spanned columns, so position-based
+  // sorting moved the wrong column on the season table.
+  var body = t.querySelector("tbody tr");
+  if (!body) return;
+  var head = Array.prototype.slice.call(t.querySelectorAll("thead th[id]"));
+  head.forEach(function (th) {
+    var id = th.getAttribute("id"), idx = -1;
+    Array.prototype.forEach.call(body.children, function (c, i) {
+      var h = (c.getAttribute("headers") || "").split(/\s+/);
+      if (h.indexOf(id) > -1) idx = i;
+    });
+    if (idx < 0) return;                     // a spanner: nothing to sort by
+    th.style.cursor = "pointer";
+    th.addEventListener("click", function () {
+      var tb = t.querySelector("tbody");
+      var rows = Array.prototype.slice.call(tb.querySelectorAll("tr"));
+      var dir = th.getAttribute("data-dir") === "asc" ? -1 : 1;
+      head.forEach(function (o) { o.removeAttribute("data-dir"); });
+      th.setAttribute("data-dir", dir === 1 ? "asc" : "desc");
+      rows.sort(function (a, b) {
+        var x = caseCell(a, idx), y = caseCell(b, idx);
+        if (typeof x === "number" && typeof y === "number") return (x - y) * dir;
+        return String(x).localeCompare(String(y)) * dir;
+      });
+      rows.forEach(function (r) { tb.appendChild(r); });
+    });
+  });
+}
+function caseFilter(input, t) {
+  input.addEventListener("input", function () {
+    var q = input.value.toLowerCase();
+    t.querySelectorAll("tbody tr").forEach(function (tr) {
+      tr.style.display = tr.textContent.toLowerCase().indexOf(q) > -1 ? "" : "none";
+    });
+  });
+}
+function caseWeekPicker() {
+  var sel = document.getElementById("weekpick");
+  if (!sel) return;
+  sel.addEventListener("change", function () {
+    document.querySelectorAll(".weekbox").forEach(function (d) {
+      d.style.display = d.getAttribute("data-week") === sel.value ? "" : "none";
+    });
+  });
+}
+document.addEventListener("DOMContentLoaded", function () {
+  caseWeekPicker();
+  document.querySelectorAll(".sortable table.gt_table").forEach(caseSortable);
+  document.querySelectorAll(".filterable").forEach(function (box) {
+    var t = box.querySelector("table.gt_table"), i = box.querySelector("input");
+    if (t && i) caseFilter(i, t);
+  });
+});
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="left">
+    <a href="https://jakedavisanalytics.substack.com" title="Jake Davis Analytics — the newsletter" aria-label="Jake Davis Analytics"><svg width="40" height="40" viewBox="0 0 400 400" role="img" aria-label="Jake Davis Analytics" xmlns="http://www.w3.org/2000/svg"><defs><filter id="jdaglow-nav"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="50" y="50" width="300" height="300" rx="40" fill="#00ffff" filter="url(#jdaglow-nav)"/><text x="200" y="265" font-family="Orbitron, Arial, sans-serif" font-size="145" font-weight="900" fill="#0a0a0a" text-anchor="middle">JD</text></svg></a>
+  </div>
+  <a href="index.html">
+    <img class="brand" alt="CASE" src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDI0IDE2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkNBU0UiIHhtbG5zOmMycGE9Imh0dHA6Ly9jMnBhLm9yZy9tYW5pZmVzdCI+PG1ldGFkYXRhPjxjMnBhOm1hbmlmZXN0PkFBQVdnbXAxYldJQUFBQWVhblZ0WkdNeWNHRUFFUUFRZ0FBQXFnQTRtM0VEWXpKd1lRQUFBQlpjYW5WdFlnQUFBRWRxZFcxa1l6SnRZUUFSQUJDQUFBQ3FBRGliY1FOMWNtNDZZekp3WVRvM09HWTFZakExTnkxbVpUTXlMVFJtTjJRdE9XVTROaTAzTWpWa04yTTBaVEV6TnpNQUFBQURsMnAxYldJQUFBQXBhblZ0WkdNeVlYTUFFUUFRZ0FBQXFnQTRtM0VEWXpKd1lTNWhjM05sY25ScGIyNXpBQUFBQUx4cWRXMWlBQUFBUkdwMWJXUmpZbTl5QUJFQUVJQUFBS29BT0p0eEUyTXljR0V1YVc1bmNtVmthV1Z1ZEM1Mk13QUFBQUFZWXpKemFFTDhWOHZsbW9KSSt2Z214a2V6VytZQUFBQndZMkp2Y3FOcFpHTTZabTl5YldGMGJXbHRZV2RsTDNOMlp5dDRiV3hxYVc1emRHRnVZMlZKUkhnc2VHMXdPbWxwWkRveE16YzNaVFV5T1MwelpUYzVMVFJrTVdRdE9HVTFNeTB4WXpWa1pEZ3daalkyTURGc2NtVnNZWFJwYjI1emFHbHdhSEJoY21WdWRFOW1BQUFCNG1wMWJXSUFBQUJCYW5WdFpHTmliM0lBRVFBUWdBQUFxZ0E0bTNFVFl6SndZUzVoWTNScGIyNXpMbll5QUFBQUFCaGpNbk5vK0dWTVRvbUJHSHpmT2FWV2JaY0VnQUFBQVpsalltOXlvbWRoWTNScGIyNXpncUptWVdOMGFXOXVhMk15Y0dFdWIzQmxibVZrYW5CaGNtRnRaWFJsY25PaGEybHVaM0psWkdsbGJuUnpnYUpqZFhKc2VDMXpaV3htSTJwMWJXSm1QV015Y0dFdVlYTnpaWEowYVc5dWN5OWpNbkJoTG1sdVozSmxaR2xsYm5RdWRqTmthR0Z6YUZnZ0hCcXdNSm42ZGpkaVdCTWwwV1FwMDQ2K09kU0piUkpXZlZKdm5HY29tcFNrWm1GamRHbHZibmdkWTI5dExtRnVkR2h5YjNCcFl5NWpiR0YxWkdVdWNISnZkbWxrWldScWNHRnlZVzFsZEdWeWM2RjRIMk52YlM1aGJuUm9jbTl3YVdNdWIzSnBaMmx1TFdOdmJtWnBaR1Z1WTJWbmRXNXJibTkzYm10a1pYTmpjbWx3ZEdsdmJuaG1RMnhoZFdSbElIQnliM1pwWkdWa0lIUm9hWE1nWm1sc1pTQmhkQ0IwYUdVZ2NtVnhkV1Z6ZENCdlppQmhJSFZ6WlhJZ1lXNWtJRzFoZVNCb1lYWmxJR055WldGMFpXUWdiM0lnYlc5a2FXWnBaV1FnZEdobElHWnBiR1VnWTI5dWRHVnVkSE11YlhOdlpuUjNZWEpsUVdkbGJuU2haRzVoYldWbVEyeGhkV1JsY21Gc2JFRmpkR2x2Ym5OSmJtTnNkV1JsWlBVQUFBRElhblZ0WWdBQUFFQnFkVzFrWTJKdmNnQVJBQkNBQUFDcUFEaWJjUk5qTW5CaExtaGhjMmd1WkdGMFlRQUFBQUFZWXpKemFEclloNDQ3cTkzWE1OOUQwZ2Zvd0lzQUFBQ0FZMkp2Y3FWallXeG5abk5vWVRJMU5tTndZV1JOQUFBQUFBQUFBQUFBQUFBQUFHUm9ZWE5vV0NDOFdTUzFHRWpEQjNrSSt6RUFkQjlhSU44Z1pQRlNvQ1VFZWQwc0pQWmhSV1J1WVcxbGJtcDFiV0ptSUcxaGJtbG1aWE4wYW1WNFkyeDFjMmx2Ym5PQm9tVnpkR0Z5ZEJpYVpteGxibWQwYUJrZUJBQUFBajVxZFcxaUFBQUFKMnAxYldSak1tTnNBQkVBRUlBQUFLb0FPSnR4QTJNeWNHRXVZMnhoYVcwdWRqSUFBQUFDRDJOaWIzS2xZMkZzWjJaemFHRXlOVFpwYzJsbmJtRjBkWEpsZUUxelpXeG1JMnAxYldKbVBTOWpNbkJoTDNWeWJqcGpNbkJoT2pjNFpqVmlNRFUzTFdabE16SXROR1kzWkMwNVpUZzJMVGN5TldRM1l6UmxNVE0zTXk5ak1uQmhMbk5wWjI1aGRIVnlaV3BwYm5OMFlXNWpaVWxFZUN4NGJYQTZhV2xrT21Jek0yWTRNRFF5TFRNMk1qRXRORGcyTXkwNFlUWTRMV00xT0RKaVlXVmtNVEZoTlhKamNtVmhkR1ZrWDJGemMyVnlkR2x2Ym5PRG9tTjFjbXg0TFhObGJHWWphblZ0WW1ZOVl6SndZUzVoYzNObGNuUnBiMjV6TDJNeWNHRXVhVzVuY21Wa2FXVnVkQzUyTTJSb1lYTm9XQ0FjR3JBd21mcDJOMkpZRXlYUlpDblRqcjQ1MUlsdEVsWjlVbStjWnlpYWxLSmpkWEpzZUNwelpXeG1JMnAxYldKbVBXTXljR0V1WVhOelpYSjBhVzl1Y3k5ak1uQmhMbUZqZEdsdmJuTXVkakprYUdGemFGZ2drRGE1SWt1R2NTMHN1WHZhUWFxWnBrVElzMHZyRnh2emdhWFIxU3lCSE5DaVkzVnliSGdwYzJWc1ppTnFkVzFpWmoxak1uQmhMbUZ6YzJWeWRHbHZibk12WXpKd1lTNW9ZWE5vTG1SaGRHRmthR0Z6YUZnZ3o4b203eWxQMm9EVE0vUC9iSEpOaDFtbGJLd2FjUDMyUEViN2prV1hIZnAwWTJ4aGFXMWZaMlZ1WlhKaGRHOXlYMmx1Wm0ralpHNWhiV1Z2UVc1MGFISnZjR2xqSUVacGJHVnpaM1psY25OcGIyNWxNUzR3TGpCcmMzQmxZMVpsY25OcGIyNWxNaTQwTGpBQUFCQTRhblZ0WWdBQUFDaHFkVzFrWXpKamN3QVJBQkNBQUFDcUFEaWJjUU5qTW5CaExuTnBaMjVoZEhWeVpRQUFBQkFJWTJKdmN0S0VXUUlTb2dFbUdDRlpBZ293Z2dJR01JSUJqYUFEQWdFQ0FoUkE1YUFLN3NJNTBMNjRnL29HUWdVOVoxVVRBREFLQmdncWhrak9QUVFEQXpCSk1SY3dGUVlEVlFRS0V3NUJiblJvY205d2FXTXNJRkJDUXpFdU1Dd0dBMVVFQXhNbFFXNTBhSEp2Y0dsaklFTnZiblJsYm5RZ1EzSmxaR1Z1ZEdsaGJITWdVbTl2ZENCRFFUQWVGdzB5TmpBNE1EY3hPRFF6TlRaYUZ3MHlPREE0TURZeE9UUXpOVFphTUVReEZ6QVZCZ05WQkFvVERrRnVkR2h5YjNCcFl5d2dVRUpETVNrd0p3WURWUVFERXlCQmJuUm9jbTl3YVdNZ1EyeGhkV1JsSUVOdmJuUmxiblFnVTJsbmJtbHVaekJaTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEEwSUFCSmg2Q212TFVCZ0ZGTlUwdlVLbE9WdEU2ZGpkMTdMNVN1d1gwTGVtRmlzQk0zZGtkLzNjeWp4RkEzUW81UzQ2ZlgwL2loWTBWWjdtZmI5S0Y3MDN0NU9qV0RCV01BNEdBMVVkRHdFQi93UUVBd0lIZ0RBVkJnTlZIU1VFRGpBTUJnb3JCZ0VFQVlQb1hnSUJNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVV6bEhpQklGT1pGc2orT1BFejVvK25NSFhYTUl3Q2dZSUtvWkl6ajBFQXdNRFp3QXdaQUl3TVhNZEZKNEJldExMVlk3T1J1RTlub3FiYkFaT1puL2FBclh5VHdGQVpmS3JQenhGMnZQb0pOZjErVUNkZzFYR0FqQndYMXpkOVdHcVlrcW1MNVNGcXcxUXlTanIxekpmcEpNOSsxcmREd1NQTE1PUE9qS3VpWGpvVS9wVVVlRzlSd21oWTNCaFpGa05uZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVBaWVFPTkZnTWFSQnBUdDhLb3pmTVVRMy9CZVNEQ0pOQk5abFZFQzJBSjFjVWdjTDgyeVRaY2xPTkhqeGJLTjA4a2svMXM3MUMvMDBna3NqRUlzUkxma2JpOD08L2MycGE6bWFuaWZlc3Q+PC9tZXRhZGF0YT4KICA8IS0tCiAgICBDQVNFIOKAlCBob3Jpem9udGFsIGxvY2t1cDogbWFyayArIHdvcmRtYXJrLiBEZWZhdWx0IHNpdGUgaGVhZGVyLgogICAgTGV0dGVyIGhlaWdodCA2MCUgb2YgdGhlIG1hcmssIHZlcnRpY2FsbHkgY2VudGVyZWQgb24gaXQuCiAgLS0+CiAgPGRlZnM+CiAgICA8ZmlsdGVyIGlkPSJnbG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMi42IiByZXN1bHQ9ImIiLz4KICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJiIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJkb3RnbG93IiB4PSItMTAwJSIgeT0iLTEwMCUiIHdpZHRoPSIzMDAlIiBoZWlnaHQ9IjMwMCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI1IiByZXN1bHQ9ImIiLz4KICAgICAgPGZlTWVyZ2U+PGZlTWVyZ2VOb2RlIGluPSJiIi8+PGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+PC9mZU1lcmdlPgogICAgPC9maWx0ZXI+CiAgCiAgICA8ZmlsdGVyIGlkPSJ3Z2xvdyIgeD0iLTEwJSIgeT0iLTMwJSIgd2lkdGg9IjEyMCUiIGhlaWdodD0iMTYwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjIuNiIgcmVzdWx0PSJiIi8+CiAgICAgIDxmZU1lcmdlPjxmZU1lcmdlTm9kZSBpbj0iYiIvPjxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogICAgPGcgaWQ9Im1hcmsiPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiByeD0iMTgiIGZpbGw9IiMwYTBhMGEiIHN0cm9rZT0iIzAwNjZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2Utb3BhY2l0eT0iMC40NSIvPgogIDxnIHN0cm9rZT0iIzAwNjZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjE2Ij4KICAgIDxwYXRoIGQ9Ik0wIDQwSDIwME0wIDgwSDIwME0wIDEyMEgyMDBNMCAxNjBIMjAwIi8+CiAgICA8cGF0aCBkPSJNNDAgMFYyMDBNODAgMFYyMDBNMTIwIDBWMjAwTTE2MCAwVjIwMCIvPgogIDwvZz4KICA8ZyBvcGFjaXR5PSIwLjYiPgogICAgICAgIDxyZWN0IHg9IjM1LjUiIHk9IjEwOC4yIiB3aWR0aD0iOSIgaGVpZ2h0PSIyMy44IiByeD0iMiIgZmlsbD0iIzAwZmY4OCIvPgogICAgPHJlY3QgeD0iNTAuNSIgeT0iMTMyIiB3aWR0aD0iOSIgaGVpZ2h0PSIxNy4wIiByeD0iMiIgZmlsbD0iI2ZmNjYwMCIvPgogICAgPHJlY3QgeD0iNjUuNSIgeT0iOTQuNiIgd2lkdGg9IjkiIGhlaWdodD0iMzcuNCIgcng9IjIiIGZpbGw9IiMwMGZmODgiLz4KICAgIDxyZWN0IHg9IjgwLjUiIHk9IjEzMiIgd2lkdGg9IjkiIGhlaWdodD0iMjMuOCIgcng9IjIiIGZpbGw9IiNmZjY2MDAiLz4KICAgIDxyZWN0IHg9Ijk1LjUiIHk9IjExOC40IiB3aWR0aD0iOSIgaGVpZ2h0PSIxMy42IiByeD0iMiIgZmlsbD0iIzAwZmY4OCIvPgogICAgPHJlY3QgeD0iMTEwLjUiIHk9IjEzMiIgd2lkdGg9IjkiIGhlaWdodD0iMzAuNiIgcng9IjIiIGZpbGw9IiNmZjY2MDAiLz4KICAgIDxyZWN0IHg9IjEyNS41IiB5PSI4Ny44IiB3aWR0aD0iOSIgaGVpZ2h0PSI0NC4yIiByeD0iMiIgZmlsbD0iIzAwZmY4OCIvPgogICAgPHJlY3QgeD0iMTQwLjUiIHk9IjEzMiIgd2lkdGg9IjkiIGhlaWdodD0iMTAuMiIgcng9IjIiIGZpbGw9IiNmZjY2MDAiLz4KICAgIDxyZWN0IHg9IjE1NS41IiB5PSI5OC4wIiB3aWR0aD0iOSIgaGVpZ2h0PSIzNC4wIiByeD0iMiIgZmlsbD0iIzAwZmY4OCIvPgogIDwvZz4KICA8cGF0aCBkPSJNMjQgMTMyIEgxNzYiIHN0cm9rZT0iI2MwYzBjMCIgc3Ryb2tlLXdpZHRoPSIyLjUiIG9wYWNpdHk9IjAuOCIvPgogIDxwYXRoIGQ9Ik0yOC4wIDEzMi4wIEw0MC4wIDEwOC4yIEw1NS4wIDEyNS4yIEw3MC4wIDg3LjggTDg1LjAgMTExLjYgTDEwMC4wIDk4LjAgTDExNS4wIDEyOC42IEwxMzAuMCA4NC40IEwxNDUuMCA5NC42IEwxNjAuMCA2MC42IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGZmZmYiIHN0cm9rZS13aWR0aD0iNyIKICAgICAgICBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbHRlcj0idXJsKCNnbG93KSIvPgogIDxjaXJjbGUgY3g9IjE2MCIgY3k9IjYwLjYiIHI9IjEwIiBmaWxsPSIjZmZmZjAwIiBmaWx0ZXI9InVybCgjZG90Z2xvdykiLz4KPC9nPgogICAgPGcgaWQ9ImxldHRlcnMiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMTMiCiAgICAgICBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgPHBhdGggZD0iTTY0IDAgSDE0IFEwIDAgMCAxNCBWODYgUTAgMTAwIDE0IDEwMCBINjQiLz4KICAgICAgPHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODYsMCkiCiAgICAgICAgICAgIGQ9Ik0wIDEwMCBWMTQgUTAgMCAxNCAwIEg1MCBRNjQgMCA2NCAxNCBWMTAwIE0wIDU0IEg2NCIvPgogICAgICA8cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzIsMCkiCiAgICAgICAgICAgIGQ9Ik02NCAwIEgxNCBRMCAwIDAgMTQgVjM2IFEwIDUwIDE0IDUwIEg1MCBRNjQgNTAgNjQgNjQKICAgICAgICAgICAgICAgVjg2IFE2NCAxMDAgNTAgMTAwIEgwIi8+CiAgICAgIDxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1OCwwKSIgZD0iTTY0IDAgSDAgVjEwMCBINjQgTTAgNTAgSDUwIi8+CiAgICA8L2c+CiAgCiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI0MjQiIGhlaWdodD0iMTYwIiBmaWxsPSIjMGEwYTBhIi8+CiAgPHVzZSBocmVmPSIjbWFyayIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjAsMjApIHNjYWxlKDAuNikiLz4KICA8dXNlIGhyZWY9IiNsZXR0ZXJzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjYsNDQpIHNjYWxlKDAuNzIpIiBzdHJva2U9IiMwMGZmZmYiIGZpbHRlcj0idXJsKCN3Z2xvdykiLz4KPC9zdmc+Cg=="/>
+  </a>
+  <div class="right">
+    <a class="subscribe" href="https://jakedavisanalytics.substack.com/subscribe">Subscribe</a>
+  </div>
+</header>
+<nav class="case">
+  <a href="index.html">Games</a>
+  <a href="scoreboard.html">Scoreboard</a>
+  <a href="teams.html">Teams</a>
+  <a href="leaders.html" class="here">Leaders</a>
+  <a href="insights.html">Insights</a>
+  <a href="about.html">What is CASE</a>
+  <a href="definitions.html">Definitions</a>
+  <a href="https://github.com/davisj2007/nfl_case_data" target="_blank" rel="noopener">Data ↗</a>
+</nav>
+<main>
+  <h1 class="page">Leaders</h1>
+  <p class="lede">Season to date, sorted by total Contested CASE. One quirk worth knowing: a completion counts fully for the passer <em>and</em> the receiver, so players won't add up to their team's total.</p>
+  <div class="filterable">
+    <section aria-labeledby="qb">
+      <h2 id="qb">Quarterbacks</h2>
+      <p class="hint">Click a column to sort. Type to find a player.</p>
+      <div class="filterbar">
+        <input type="search" placeholder="Filter by player or team" aria-label="Filter Quarterbacks"/>
+      </div>
+      <div class="scroll sortable"><div id="lcybaaabkx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#lcybaaabkx table {
+  font-family: Orbitron, Consolas, monospace, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lcybaaabkx thead, #lcybaaabkx tbody, #lcybaaabkx tfoot, #lcybaaabkx tr, #lcybaaabkx td, #lcybaaabkx th {
+  border-style: none;
+}
+
+#lcybaaabkx p {
+  margin: 0;
+  padding: 0;
+}
+
+#lcybaaabkx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #0A0A0A;
+  width: 1200px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lcybaaabkx .gt_title {
+  color: #FFFFFF;
+  font-size: 25.2px;
+  font-weight: initial;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #0A0A0A;
+  border-bottom-width: 0;
+}
+
+#lcybaaabkx .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 15.4px;
+  font-weight: initial;
+  padding-top: 7px;
+  padding-bottom: 9px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #0A0A0A;
+  border-top-width: 0;
+}
+
+#lcybaaabkx .gt_heading {
+  background-color: #0A0A0A;
+  text-align: center;
+  border-bottom-color: #0A0A0A;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 13px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lcybaaabkx .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lcybaaabkx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lcybaaabkx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lcybaaabkx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lcybaaabkx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lcybaaabkx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lcybaaabkx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lcybaaabkx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lcybaaabkx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lcybaaabkx .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lcybaaabkx .gt_stub {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcybaaabkx .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lcybaaabkx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lcybaaabkx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lcybaaabkx .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #16213E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcybaaabkx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lcybaaabkx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcybaaabkx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lcybaaabkx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_footnote {
+  margin: 0px;
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcybaaabkx .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lcybaaabkx .gt_sourcenote {
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lcybaaabkx .gt_left {
+  text-align: left;
+}
+
+#lcybaaabkx .gt_center {
+  text-align: center;
+}
+
+#lcybaaabkx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lcybaaabkx .gt_font_normal {
+  font-weight: normal;
+}
+
+#lcybaaabkx .gt_font_bold {
+  font-weight: bold;
+}
+
+#lcybaaabkx .gt_font_italic {
+  font-style: italic;
+}
+
+#lcybaaabkx .gt_super {
+  font-size: 65%;
+}
+
+#lcybaaabkx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lcybaaabkx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lcybaaabkx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lcybaaabkx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lcybaaabkx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lcybaaabkx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lcybaaabkx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lcybaaabkx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lcybaaabkx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+
+html, body {
+  background-color: #0a0a0a !important;
+  margin: 0;
+  padding: 0;
+}
+
+.gt_table_container {
+  background-color: #0a0a0a !important;
+}
+
+.gt_heading {
+  padding-bottom: 12px !important;
+}
+
+.gt_title {
+  margin-bottom: 2px !important;
+  padding-bottom: 0 !important;
+  line-height: 1.1 !important;
+}
+
+.gt_subtitle {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.gt_title {
+  color: #00ffff !important;
+  font-family: 'Teko', 'Orbitron', sans-serif !important;
+  font-weight: bold !important;
+}
+
+.gt_subtitle {
+  color: #ffffff !important;
+}
+
+.gt_col_heading, .gt_column_spanner {
+  color: #ffffff !important;
+}
+
+.gt_group_heading {
+  color: #ffffff !important;
+}
+
+.gt_sourcenote, .gt_footnote {
+  color: #c0c0c0 !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_title gt_font_normal" style>QUARTERBACKS</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>34 players with at least 15 plays and a full play's worth of leverage, ordered by total Contested CASE</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="headshot"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="player">Player</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="team">Team</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="plays">Plays</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="case">CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_case">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="contested">CONTESTED<br>CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_contested">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="epa">EPA</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_epa">Rank</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/servs1fpsynfxep4rz2z" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Allen</td>
+<td headers="team" class="gt_row gt_left">BUF</td>
+<td headers="plays" class="gt_row gt_right">71</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+34.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.49</span></td>
+<td headers="r_case" class="gt_row gt_right">1</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.57</span></td>
+<td headers="r_contested" class="gt_row gt_right">1</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+37.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.53</span></td>
+<td headers="r_epa" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xykdxnvxpf9pobxvkjfj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Purdy</td>
+<td headers="team" class="gt_row gt_left">SF</td>
+<td headers="plays" class="gt_row gt_right">61</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+31.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.51</span></td>
+<td headers="r_case" class="gt_row gt_right">2</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.44</span></td>
+<td headers="r_contested" class="gt_row gt_right">2</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+33.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.56</span></td>
+<td headers="r_epa" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/e0xz0hu8s0lpbwlr0bzj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Lock</td>
+<td headers="team" class="gt_row gt_left">SEA</td>
+<td headers="plays" class="gt_row gt_right">51</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+22.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.45</span></td>
+<td headers="r_case" class="gt_row gt_right">5</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.43</span></td>
+<td headers="r_contested" class="gt_row gt_right">3</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+24.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.48</span></td>
+<td headers="r_epa" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">P.Mahomes</td>
+<td headers="team" class="gt_row gt_left">KC</td>
+<td headers="plays" class="gt_row gt_right">84</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+18.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">8</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_contested" class="gt_row gt_right">4</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+14.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_epa" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cruqs6qpbykh7a2whd7p" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">L.Jackson</td>
+<td headers="team" class="gt_row gt_left">BAL</td>
+<td headers="plays" class="gt_row gt_right">68</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+16.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.24</span></td>
+<td headers="r_case" class="gt_row gt_right">10</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.37</span></td>
+<td headers="r_contested" class="gt_row gt_right">5</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+17.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.26</span></td>
+<td headers="r_epa" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qy1lfhlzhiacsyzzm1j7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Young</td>
+<td headers="team" class="gt_row gt_left">CAR</td>
+<td headers="plays" class="gt_row gt_right">80</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+24.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.31</span></td>
+<td headers="r_case" class="gt_row gt_right">4</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.32</span></td>
+<td headers="r_contested" class="gt_row gt_right">6</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+24.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.30</span></td>
+<td headers="r_epa" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Williams</td>
+<td headers="team" class="gt_row gt_left">CHI</td>
+<td headers="plays" class="gt_row gt_right">70</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+21.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.30</span></td>
+<td headers="r_case" class="gt_row gt_right">6</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_contested" class="gt_row gt_right">7</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+22.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.31</span></td>
+<td headers="r_epa" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blixemm3s9sa4gmqk5yn" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Prescott</td>
+<td headers="team" class="gt_row gt_left">DAL</td>
+<td headers="plays" class="gt_row gt_right">72</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+27.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.38</span></td>
+<td headers="r_case" class="gt_row gt_right">3</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.31</span></td>
+<td headers="r_contested" class="gt_row gt_right">8</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+28.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.39</span></td>
+<td headers="r_epa" class="gt_row gt_right">3</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmdqr7gju0dciapvdjcv" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Cousins</td>
+<td headers="team" class="gt_row gt_left">LV</td>
+<td headers="plays" class="gt_row gt_right">63</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+11.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_case" class="gt_row gt_right">13</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.26</span></td>
+<td headers="r_contested" class="gt_row gt_right">9</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">17</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6uymxssgiicjmxkzxoc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Dart</td>
+<td headers="team" class="gt_row gt_left">NYG</td>
+<td headers="plays" class="gt_row gt_right">38</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+18.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.49</span></td>
+<td headers="r_case" class="gt_row gt_right">7</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.44</span></td>
+<td headers="r_contested" class="gt_row gt_right">10</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+20.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.55</span></td>
+<td headers="r_epa" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqy0933vz5yogwlefb1s" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">G.Smith</td>
+<td headers="team" class="gt_row gt_left">NYJ</td>
+<td headers="plays" class="gt_row gt_right">75</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+12.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_case" class="gt_row gt_right">12</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_contested" class="gt_row gt_right">11</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+13.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_epa" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d75srntioly7fq0z8vip" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Lawrence</td>
+<td headers="team" class="gt_row gt_left">JAX</td>
+<td headers="plays" class="gt_row gt_right">56</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+14.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_case" class="gt_row gt_right">11</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.23</span></td>
+<td headers="r_contested" class="gt_row gt_right">12</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+14.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_epa" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rdxowm5dvpbb8p3aazbc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Brissett</td>
+<td headers="team" class="gt_row gt_left">ARI</td>
+<td headers="plays" class="gt_row gt_right">70</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.10</span></td>
+<td headers="r_case" class="gt_row gt_right">18</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.15</span></td>
+<td headers="r_contested" class="gt_row gt_right">13</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_epa" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/svxl2pk2cuqf26zrhii4" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">M.Stafford</td>
+<td headers="team" class="gt_row gt_left">LA</td>
+<td headers="plays" class="gt_row gt_right">58</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_case" class="gt_row gt_right">14</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_contested" class="gt_row gt_right">14</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_epa" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/c47i9v6gmokkun9cat9s" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Hurts</td>
+<td headers="team" class="gt_row gt_left">PHI</td>
+<td headers="plays" class="gt_row gt_right">75</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_case" class="gt_row gt_right">16</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_contested" class="gt_row gt_right">15</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+13.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_epa" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Stroud</td>
+<td headers="team" class="gt_row gt_left">HOU</td>
+<td headers="plays" class="gt_row gt_right">104</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">21</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.10</span></td>
+<td headers="r_contested" class="gt_row gt_right">16</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">0.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">0.00</span></td>
+<td headers="r_epa" class="gt_row gt_right">22</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">M.Willis</td>
+<td headers="team" class="gt_row gt_left">MIA</td>
+<td headers="plays" class="gt_row gt_right">65</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">22</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.14</span></td>
+<td headers="r_contested" class="gt_row gt_right">17</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_epa" class="gt_row gt_right">25</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Herbert</td>
+<td headers="team" class="gt_row gt_left">LAC</td>
+<td headers="plays" class="gt_row gt_right">66</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_case" class="gt_row gt_right">26</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">18</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−7.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">29</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yggfwr4ak4po9byj0qor" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Goff</td>
+<td headers="team" class="gt_row gt_left">DET</td>
+<td headers="plays" class="gt_row gt_right">85</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+18.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">9</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_contested" class="gt_row gt_right">19</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+18.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.22</span></td>
+<td headers="r_epa" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uneiwen9drvci9ahuebp" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Love</td>
+<td headers="team" class="gt_row gt_left">GB</td>
+<td headers="plays" class="gt_row gt_right">78</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_case" class="gt_row gt_right">27</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_contested" class="gt_row gt_right">20</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.08</span></td>
+<td headers="r_epa" class="gt_row gt_right">27</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Burrow</td>
+<td headers="team" class="gt_row gt_left">CIN</td>
+<td headers="plays" class="gt_row gt_right">73</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.01</span></td>
+<td headers="r_case" class="gt_row gt_right">25</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_contested" class="gt_row gt_right">21</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.03</span></td>
+<td headers="r_epa" class="gt_row gt_right">24</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrdweg39v1ay4zoc0lgp" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Daniels</td>
+<td headers="team" class="gt_row gt_left">WAS</td>
+<td headers="plays" class="gt_row gt_right">62</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.15</span></td>
+<td headers="r_case" class="gt_row gt_right">15</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_contested" class="gt_row gt_right">22</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+11.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_epa" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oyap81gtzcvnfmripis1" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Maye</td>
+<td headers="team" class="gt_row gt_left">NE</td>
+<td headers="plays" class="gt_row gt_right">69</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">24</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.06</span></td>
+<td headers="r_contested" class="gt_row gt_right">23</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_epa" class="gt_row gt_right">23</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Nix</td>
+<td headers="team" class="gt_row gt_left">DEN</td>
+<td headers="plays" class="gt_row gt_right">64</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">28</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.06</span></td>
+<td headers="r_contested" class="gt_row gt_right">24</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">28</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ot6wu9gw3cgcdb2cx6is" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Wentz</td>
+<td headers="team" class="gt_row gt_left">MIN</td>
+<td headers="plays" class="gt_row gt_right">48</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_case" class="gt_row gt_right">19</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_contested" class="gt_row gt_right">25</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">18</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b9ribxqudeehvmjlw0va" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">M.Mariota</td>
+<td headers="team" class="gt_row gt_left">WAS</td>
+<td headers="plays" class="gt_row gt_right">17</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_case" class="gt_row gt_right">23</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.30</span></td>
+<td headers="r_contested" class="gt_row gt_right">26</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_epa" class="gt_row gt_right">21</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/private/f_auto,q_auto/league/otfs2docj6eahaebo5xn" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Watson</td>
+<td headers="team" class="gt_row gt_left">CLE</td>
+<td headers="plays" class="gt_row gt_right">65</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_case" class="gt_row gt_right">20</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">27</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.06</span></td>
+<td headers="r_epa" class="gt_row gt_right">19</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/viadutkbvligsopnd2qn" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Ward</td>
+<td headers="team" class="gt_row gt_left">TEN</td>
+<td headers="plays" class="gt_row gt_right">63</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">29</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.08</span></td>
+<td headers="r_contested" class="gt_row gt_right">28</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_epa" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wsrkib8qgwtb2t2ugaru" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Shough</td>
+<td headers="team" class="gt_row gt_left">NO</td>
+<td headers="plays" class="gt_row gt_right">103</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_case" class="gt_row gt_right">17</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">29</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.09</span></td>
+<td headers="r_epa" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhuiypfjzpkisxllinyv" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Jones</td>
+<td headers="team" class="gt_row gt_left">IND</td>
+<td headers="plays" class="gt_row gt_right">67</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_case" class="gt_row gt_right">30</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">30</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−10.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.16</span></td>
+<td headers="r_epa" class="gt_row gt_right">30</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vwikoroqsyf8iemlrohb" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Winston</td>
+<td headers="team" class="gt_row gt_left">NYG</td>
+<td headers="plays" class="gt_row gt_right">29</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−12.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.42</span></td>
+<td headers="r_case" class="gt_row gt_right">32</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.54</span></td>
+<td headers="r_contested" class="gt_row gt_right">31</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−16.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.57</span></td>
+<td headers="r_epa" class="gt_row gt_right">31</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i2uufyghiphx4oihgucm" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Mayfield</td>
+<td headers="team" class="gt_row gt_left">TB</td>
+<td headers="plays" class="gt_row gt_right">76</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−12.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.16</span></td>
+<td headers="r_case" class="gt_row gt_right">31</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.28</span></td>
+<td headers="r_contested" class="gt_row gt_right">32</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−19.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.26</span></td>
+<td headers="r_epa" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dypvakakxhccxs67tb0y" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">A.Rodgers</td>
+<td headers="team" class="gt_row gt_left">PIT</td>
+<td headers="plays" class="gt_row gt_right">86</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−25.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.30</span></td>
+<td headers="r_case" class="gt_row gt_right">34</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.29</span></td>
+<td headers="r_contested" class="gt_row gt_right">33</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−33.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.39</span></td>
+<td headers="r_epa" class="gt_row gt_right">34</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mwrtykpswz7nbfisqlmj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Rush</td>
+<td headers="team" class="gt_row gt_left">ATL</td>
+<td headers="plays" class="gt_row gt_right">46</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−23.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.52</span></td>
+<td headers="r_case" class="gt_row gt_right">33</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−7.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.48</span></td>
+<td headers="r_contested" class="gt_row gt_right">34</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−30.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.67</span></td>
+<td headers="r_epa" class="gt_row gt_right">33</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="10">CASE  |  Total above, per dropback beneath. Player views are tabulations, not allocations: a completion counts in full for both passer and receiver, so these do not sum to a team total.</td>
+    </tr>
+  </tfoot>
+</table>
+</div></div>
+    </section>
+  </div>
+  <div class="filterable">
+    <section aria-labeledby="rb">
+      <h2 id="rb">Rushers</h2>
+      <p class="hint">Click a column to sort. Type to find a player.</p>
+      <div class="filterbar">
+        <input type="search" placeholder="Filter by player or team" aria-label="Filter Rushers"/>
+      </div>
+      <div class="scroll sortable"><div id="gttzcexbxs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#gttzcexbxs table {
+  font-family: Orbitron, Consolas, monospace, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gttzcexbxs thead, #gttzcexbxs tbody, #gttzcexbxs tfoot, #gttzcexbxs tr, #gttzcexbxs td, #gttzcexbxs th {
+  border-style: none;
+}
+
+#gttzcexbxs p {
+  margin: 0;
+  padding: 0;
+}
+
+#gttzcexbxs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #0A0A0A;
+  width: 1200px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gttzcexbxs .gt_title {
+  color: #FFFFFF;
+  font-size: 25.2px;
+  font-weight: initial;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #0A0A0A;
+  border-bottom-width: 0;
+}
+
+#gttzcexbxs .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 15.4px;
+  font-weight: initial;
+  padding-top: 7px;
+  padding-bottom: 9px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #0A0A0A;
+  border-top-width: 0;
+}
+
+#gttzcexbxs .gt_heading {
+  background-color: #0A0A0A;
+  text-align: center;
+  border-bottom-color: #0A0A0A;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 13px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gttzcexbxs .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gttzcexbxs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gttzcexbxs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gttzcexbxs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gttzcexbxs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gttzcexbxs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gttzcexbxs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gttzcexbxs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gttzcexbxs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gttzcexbxs .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gttzcexbxs .gt_stub {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gttzcexbxs .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gttzcexbxs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gttzcexbxs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gttzcexbxs .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #16213E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gttzcexbxs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gttzcexbxs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gttzcexbxs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gttzcexbxs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_footnote {
+  margin: 0px;
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gttzcexbxs .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gttzcexbxs .gt_sourcenote {
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gttzcexbxs .gt_left {
+  text-align: left;
+}
+
+#gttzcexbxs .gt_center {
+  text-align: center;
+}
+
+#gttzcexbxs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gttzcexbxs .gt_font_normal {
+  font-weight: normal;
+}
+
+#gttzcexbxs .gt_font_bold {
+  font-weight: bold;
+}
+
+#gttzcexbxs .gt_font_italic {
+  font-style: italic;
+}
+
+#gttzcexbxs .gt_super {
+  font-size: 65%;
+}
+
+#gttzcexbxs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gttzcexbxs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gttzcexbxs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gttzcexbxs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gttzcexbxs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gttzcexbxs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gttzcexbxs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gttzcexbxs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gttzcexbxs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+
+html, body {
+  background-color: #0a0a0a !important;
+  margin: 0;
+  padding: 0;
+}
+
+.gt_table_container {
+  background-color: #0a0a0a !important;
+}
+
+.gt_heading {
+  padding-bottom: 12px !important;
+}
+
+.gt_title {
+  margin-bottom: 2px !important;
+  padding-bottom: 0 !important;
+  line-height: 1.1 !important;
+}
+
+.gt_subtitle {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.gt_title {
+  color: #00ffff !important;
+  font-family: 'Teko', 'Orbitron', sans-serif !important;
+  font-weight: bold !important;
+}
+
+.gt_subtitle {
+  color: #ffffff !important;
+}
+
+.gt_col_heading, .gt_column_spanner {
+  color: #ffffff !important;
+}
+
+.gt_group_heading {
+  color: #ffffff !important;
+}
+
+.gt_sourcenote, .gt_footnote {
+  color: #c0c0c0 !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_title gt_font_normal" style>RUSHERS</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>45 players with at least 15 plays and a full play's worth of leverage, ordered by total Contested CASE</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="headshot"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="player">Player</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="team">Team</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="plays">Plays</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="case">CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_case">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="contested">CONTESTED<br>CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_contested">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="epa">EPA</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_epa">Rank</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnzsnemdzbey5hbahdhk" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Walker</td>
+<td headers="team" class="gt_row gt_left">KC</td>
+<td headers="plays" class="gt_row gt_right">47</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">1</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.27</span></td>
+<td headers="r_contested" class="gt_row gt_right">1</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.23</span></td>
+<td headers="r_epa" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/servs1fpsynfxep4rz2z" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Allen</td>
+<td headers="team" class="gt_row gt_left">BUF</td>
+<td headers="plays" class="gt_row gt_right">20</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.46</span></td>
+<td headers="r_case" class="gt_row gt_right">3</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.64</span></td>
+<td headers="r_contested" class="gt_row gt_right">2</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_epa" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Williams</td>
+<td headers="team" class="gt_row gt_left">CHI</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.31</span></td>
+<td headers="r_case" class="gt_row gt_right">8</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.43</span></td>
+<td headers="r_contested" class="gt_row gt_right">3</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.42</span></td>
+<td headers="r_epa" class="gt_row gt_right">3</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jxtikemnvpkw9r0ex2wv" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Henry</td>
+<td headers="team" class="gt_row gt_left">BAL</td>
+<td headers="plays" class="gt_row gt_right">40</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_case" class="gt_row gt_right">2</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.20</span></td>
+<td headers="r_contested" class="gt_row gt_right">4</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.24</span></td>
+<td headers="r_epa" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hjxk3judytgsxkqiilre" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Gibbs</td>
+<td headers="team" class="gt_row gt_left">DET</td>
+<td headers="plays" class="gt_row gt_right">45</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.13</span></td>
+<td headers="r_case" class="gt_row gt_right">5</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.14</span></td>
+<td headers="r_contested" class="gt_row gt_right">5</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.02</span></td>
+<td headers="r_epa" class="gt_row gt_right">17</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uwmnrhwtwug0wrgkomjk" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Taylor</td>
+<td headers="team" class="gt_row gt_left">IND</td>
+<td headers="plays" class="gt_row gt_right">43</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_case" class="gt_row gt_right">6</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_contested" class="gt_row gt_right">6</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.14</span></td>
+<td headers="r_epa" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Cook</td>
+<td headers="team" class="gt_row gt_left">BUF</td>
+<td headers="plays" class="gt_row gt_right">34</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.18</span></td>
+<td headers="r_case" class="gt_row gt_right">4</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_contested" class="gt_row gt_right">7</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.15</span></td>
+<td headers="r_epa" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmgpumoxwhvrrkcjuuuw" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Irving</td>
+<td headers="team" class="gt_row gt_left">TB</td>
+<td headers="plays" class="gt_row gt_right">25</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.13</span></td>
+<td headers="r_case" class="gt_row gt_right">10</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_contested" class="gt_row gt_right">8</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.14</span></td>
+<td headers="r_epa" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cfcux3dnfmbmz3qzrnco" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Henderson</td>
+<td headers="team" class="gt_row gt_left">NE</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.07</span></td>
+<td headers="r_case" class="gt_row gt_right">25</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.26</span></td>
+<td headers="r_contested" class="gt_row gt_right">9</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">19</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Monangai</td>
+<td headers="team" class="gt_row gt_left">CHI</td>
+<td headers="plays" class="gt_row gt_right">20</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.26</span></td>
+<td headers="r_case" class="gt_row gt_right">7</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.16</span></td>
+<td headers="r_contested" class="gt_row gt_right">10</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_epa" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/resjdwihunsqckohcorj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.McCaffrey</td>
+<td headers="team" class="gt_row gt_left">SF</td>
+<td headers="plays" class="gt_row gt_right">20</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.10</span></td>
+<td headers="r_case" class="gt_row gt_right">12</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.16</span></td>
+<td headers="r_contested" class="gt_row gt_right">11</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gytdgnrjj3jk8rlfxz85" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Corum</td>
+<td headers="team" class="gt_row gt_left">LA</td>
+<td headers="plays" class="gt_row gt_right">22</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_case" class="gt_row gt_right">9</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_contested" class="gt_row gt_right">12</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.14</span></td>
+<td headers="r_epa" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Tuten</td>
+<td headers="team" class="gt_row gt_left">JAX</td>
+<td headers="plays" class="gt_row gt_right">28</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">16</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_contested" class="gt_row gt_right">13</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">0.00</span></td>
+<td headers="r_epa" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pjgml85ghq7oa48dctn7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Hubbard</td>
+<td headers="team" class="gt_row gt_left">CAR</td>
+<td headers="plays" class="gt_row gt_right">22</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_case" class="gt_row gt_right">13</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">14</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.07</span></td>
+<td headers="r_epa" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tklzj7zzve1t4z2hhr1g" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Croskey-Merritt</td>
+<td headers="team" class="gt_row gt_left">WAS</td>
+<td headers="plays" class="gt_row gt_right">28</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.08</span></td>
+<td headers="r_case" class="gt_row gt_right">11</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">15</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_epa" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pdaa8u0x2qepyklabdr3" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Allen</td>
+<td headers="team" class="gt_row gt_left">NYJ</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.08</span></td>
+<td headers="r_case" class="gt_row gt_right">27</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">16</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.22</span></td>
+<td headers="r_epa" class="gt_row gt_right">27</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Black</td>
+<td headers="team" class="gt_row gt_left">SF</td>
+<td headers="plays" class="gt_row gt_right">21</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_case" class="gt_row gt_right">28</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.08</span></td>
+<td headers="r_contested" class="gt_row gt_right">17</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.08</span></td>
+<td headers="r_epa" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/smsyrjrwy0lf0hu9hkvg" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Williams</td>
+<td headers="team" class="gt_row gt_left">LA</td>
+<td headers="plays" class="gt_row gt_right">23</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">21</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.04</span></td>
+<td headers="r_contested" class="gt_row gt_right">18</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.12</span></td>
+<td headers="r_epa" class="gt_row gt_right">24</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Skattebo</td>
+<td headers="team" class="gt_row gt_left">NYG</td>
+<td headers="plays" class="gt_row gt_right">30</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_case" class="gt_row gt_right">15</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.02</span></td>
+<td headers="r_contested" class="gt_row gt_right">19</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_epa" class="gt_row gt_right">25</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gc0iljgj34piecyfueyd" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Etienne</td>
+<td headers="team" class="gt_row gt_left">NO</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">18</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_contested" class="gt_row gt_right">20</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.08</span></td>
+<td headers="r_epa" class="gt_row gt_right">18</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Achane</td>
+<td headers="team" class="gt_row gt_left">MIA</td>
+<td headers="plays" class="gt_row gt_right">31</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_case" class="gt_row gt_right">31</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.01</span></td>
+<td headers="r_contested" class="gt_row gt_right">21</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.21</span></td>
+<td headers="r_epa" class="gt_row gt_right">40</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dvpdczetkdhrqpm8izmd" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Pollard</td>
+<td headers="team" class="gt_row gt_left">TEN</td>
+<td headers="plays" class="gt_row gt_right">21</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_case" class="gt_row gt_right">17</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.01</span></td>
+<td headers="r_contested" class="gt_row gt_right">22</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.03</span></td>
+<td headers="r_epa" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Love</td>
+<td headers="team" class="gt_row gt_left">ARI</td>
+<td headers="plays" class="gt_row gt_right">20</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.02</span></td>
+<td headers="r_case" class="gt_row gt_right">20</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">0.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_contested" class="gt_row gt_right">23</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">22</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pv3sq3uzosixxexbznq5" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Brown</td>
+<td headers="team" class="gt_row gt_left">CIN</td>
+<td headers="plays" class="gt_row gt_right">36</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_case" class="gt_row gt_right">37</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.02</span></td>
+<td headers="r_contested" class="gt_row gt_right">24</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−4.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.14</span></td>
+<td headers="r_epa" class="gt_row gt_right">33</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">Br.Robinson</td>
+<td headers="team" class="gt_row gt_left">ATL</td>
+<td headers="plays" class="gt_row gt_right">20</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">23</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_contested" class="gt_row gt_right">25</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_epa" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ixykwytfrfz1cdxlhj5w" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Mason</td>
+<td headers="team" class="gt_row gt_left">MIN</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">22</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.07</span></td>
+<td headers="r_contested" class="gt_row gt_right">26</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.20</span></td>
+<td headers="r_epa" class="gt_row gt_right">26</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwvxisrnjitkkghkfcn3" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">W.Marks</td>
+<td headers="team" class="gt_row gt_left">HOU</td>
+<td headers="plays" class="gt_row gt_right">17</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_case" class="gt_row gt_right">26</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">27</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.30</span></td>
+<td headers="r_epa" class="gt_row gt_right">34</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">A.Jones</td>
+<td headers="team" class="gt_row gt_left">MIN</td>
+<td headers="plays" class="gt_row gt_right">35</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_case" class="gt_row gt_right">30</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_contested" class="gt_row gt_right">28</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">28</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rjaf9auhx3lrktzgwpfb" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">Bi.Robinson</td>
+<td headers="team" class="gt_row gt_left">ATL</td>
+<td headers="plays" class="gt_row gt_right">37</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">0.00</span></td>
+<td headers="r_case" class="gt_row gt_right">19</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_contested" class="gt_row gt_right">29</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">30</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwzske22c4wrlf27qrih" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Williams</td>
+<td headers="team" class="gt_row gt_left">DAL</td>
+<td headers="plays" class="gt_row gt_right">24</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">24</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.07</span></td>
+<td headers="r_contested" class="gt_row gt_right">30</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.10</span></td>
+<td headers="r_epa" class="gt_row gt_right">23</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ern1nbhivkmwkg82c7v1" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">S.Barkley</td>
+<td headers="team" class="gt_row gt_left">PHI</td>
+<td headers="plays" class="gt_row gt_right">19</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.07</span></td>
+<td headers="r_case" class="gt_row gt_right">29</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">31</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">21</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/owpmwzoilitcodc6cmxo" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Swift</td>
+<td headers="team" class="gt_row gt_left">CHI</td>
+<td headers="plays" class="gt_row gt_right">34</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.03</span></td>
+<td headers="r_case" class="gt_row gt_right">14</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">32</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.01</span></td>
+<td headers="r_epa" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Allgeier</td>
+<td headers="team" class="gt_row gt_left">ARI</td>
+<td headers="plays" class="gt_row gt_right">22</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_case" class="gt_row gt_right">35</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_contested" class="gt_row gt_right">33</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.26</span></td>
+<td headers="r_epa" class="gt_row gt_right">36</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvnrzndsiaojvvxz8vo5" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">R.Dowdle</td>
+<td headers="team" class="gt_row gt_left">PIT</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">38</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.17</span></td>
+<td headers="r_contested" class="gt_row gt_right">34</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.38</span></td>
+<td headers="r_epa" class="gt_row gt_right">35</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Dobbins</td>
+<td headers="team" class="gt_row gt_left">DEN</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.12</span></td>
+<td headers="r_case" class="gt_row gt_right">33</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.15</span></td>
+<td headers="r_contested" class="gt_row gt_right">35</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−4.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.24</span></td>
+<td headers="r_epa" class="gt_row gt_right">31</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m3dviruymtm2wl2zcpmr" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">B.Hall</td>
+<td headers="team" class="gt_row gt_left">NYJ</td>
+<td headers="plays" class="gt_row gt_right">38</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.06</span></td>
+<td headers="r_case" class="gt_row gt_right">34</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">36</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−4.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.12</span></td>
+<td headers="r_epa" class="gt_row gt_right">32</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f3txbqdarbabqtq4sx98" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Warren</td>
+<td headers="team" class="gt_row gt_left">PIT</td>
+<td headers="plays" class="gt_row gt_right">21</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.10</span></td>
+<td headers="r_case" class="gt_row gt_right">32</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.19</span></td>
+<td headers="r_contested" class="gt_row gt_right">37</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.17</span></td>
+<td headers="r_epa" class="gt_row gt_right">29</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ed09migntlyy8ntgvcu1" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">R.Stevenson</td>
+<td headers="team" class="gt_row gt_left">NE</td>
+<td headers="plays" class="gt_row gt_right">24</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.13</span></td>
+<td headers="r_case" class="gt_row gt_right">36</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.15</span></td>
+<td headers="r_contested" class="gt_row gt_right">38</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.26</span></td>
+<td headers="r_epa" class="gt_row gt_right">38</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ufhthbjqbgb6mggscdc9" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">M.Lloyd</td>
+<td headers="team" class="gt_row gt_left">GB</td>
+<td headers="plays" class="gt_row gt_right">19</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.30</span></td>
+<td headers="r_case" class="gt_row gt_right">42</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.23</span></td>
+<td headers="r_contested" class="gt_row gt_right">39</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−9.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.48</span></td>
+<td headers="r_epa" class="gt_row gt_right">42</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xeb6fq4zimgkksq7uari" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Montgomery</td>
+<td headers="team" class="gt_row gt_left">HOU</td>
+<td headers="plays" class="gt_row gt_right">26</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−3.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.14</span></td>
+<td headers="r_case" class="gt_row gt_right">39</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.14</span></td>
+<td headers="r_contested" class="gt_row gt_right">40</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.26</span></td>
+<td headers="r_epa" class="gt_row gt_right">41</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xni9gnwmhdex7h1ey3jq" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">E.Wilson</td>
+<td headers="team" class="gt_row gt_left">SEA</td>
+<td headers="plays" class="gt_row gt_right">23</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−4.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.18</span></td>
+<td headers="r_case" class="gt_row gt_right">40</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.37</span></td>
+<td headers="r_contested" class="gt_row gt_right">41</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.25</span></td>
+<td headers="r_epa" class="gt_row gt_right">37</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Price</td>
+<td headers="team" class="gt_row gt_left">SEA</td>
+<td headers="plays" class="gt_row gt_right">23</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−4.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.19</span></td>
+<td headers="r_case" class="gt_row gt_right">41</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.19</span></td>
+<td headers="r_contested" class="gt_row gt_right">42</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−6.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.28</span></td>
+<td headers="r_epa" class="gt_row gt_right">39</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">A.Jeanty</td>
+<td headers="team" class="gt_row gt_left">LV</td>
+<td headers="plays" class="gt_row gt_right">44</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−9.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">45</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.24</span></td>
+<td headers="r_contested" class="gt_row gt_right">43</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−13.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.29</span></td>
+<td headers="r_epa" class="gt_row gt_right">44</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">Q.Judkins</td>
+<td headers="team" class="gt_row gt_left">CLE</td>
+<td headers="plays" class="gt_row gt_right">24</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−8.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.37</span></td>
+<td headers="r_case" class="gt_row gt_right">43</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.46</span></td>
+<td headers="r_contested" class="gt_row gt_right">44</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−11.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.46</span></td>
+<td headers="r_epa" class="gt_row gt_right">43</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ck7xcbwuka7wu2zwhssk" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">O.Hampton</td>
+<td headers="team" class="gt_row gt_left">LAC</td>
+<td headers="plays" class="gt_row gt_right">35</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−9.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.26</span></td>
+<td headers="r_case" class="gt_row gt_right">44</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.22</span></td>
+<td headers="r_contested" class="gt_row gt_right">45</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−15.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.45</span></td>
+<td headers="r_epa" class="gt_row gt_right">45</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="10">CASE  |  Total above, per carry beneath. Player views are tabulations, not allocations: a completion counts in full for both passer and receiver, so these do not sum to a team total.</td>
+    </tr>
+  </tfoot>
+</table>
+</div></div>
+    </section>
+  </div>
+  <div class="filterable">
+    <section aria-labeledby="wr">
+      <h2 id="wr">Receivers</h2>
+      <p class="hint">Click a column to sort. Type to find a player.</p>
+      <div class="filterbar">
+        <input type="search" placeholder="Filter by player or team" aria-label="Filter Receivers"/>
+      </div>
+      <div class="scroll sortable"><div id="hsrlwofnpl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  <style>@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#hsrlwofnpl table {
+  font-family: Orbitron, Consolas, monospace, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hsrlwofnpl thead, #hsrlwofnpl tbody, #hsrlwofnpl tfoot, #hsrlwofnpl tr, #hsrlwofnpl td, #hsrlwofnpl th {
+  border-style: none;
+}
+
+#hsrlwofnpl p {
+  margin: 0;
+  padding: 0;
+}
+
+#hsrlwofnpl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #0A0A0A;
+  width: 1200px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hsrlwofnpl .gt_title {
+  color: #FFFFFF;
+  font-size: 25.2px;
+  font-weight: initial;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #0A0A0A;
+  border-bottom-width: 0;
+}
+
+#hsrlwofnpl .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 15.4px;
+  font-weight: initial;
+  padding-top: 7px;
+  padding-bottom: 9px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #0A0A0A;
+  border-top-width: 0;
+}
+
+#hsrlwofnpl .gt_heading {
+  background-color: #0A0A0A;
+  text-align: center;
+  border-bottom-color: #0A0A0A;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #0066FF;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 13px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hsrlwofnpl .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #16213E;
+  font-size: 13.3px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hsrlwofnpl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hsrlwofnpl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hsrlwofnpl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #0066FF;
+  vertical-align: bottom;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hsrlwofnpl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hsrlwofnpl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hsrlwofnpl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hsrlwofnpl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hsrlwofnpl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hsrlwofnpl .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hsrlwofnpl .gt_stub {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hsrlwofnpl .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hsrlwofnpl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hsrlwofnpl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hsrlwofnpl .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #16213E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hsrlwofnpl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hsrlwofnpl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #1A0A2E;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hsrlwofnpl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hsrlwofnpl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_footnote {
+  margin: 0px;
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hsrlwofnpl .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #0A0A0A;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hsrlwofnpl .gt_sourcenote {
+  font-size: 11.2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hsrlwofnpl .gt_left {
+  text-align: left;
+}
+
+#hsrlwofnpl .gt_center {
+  text-align: center;
+}
+
+#hsrlwofnpl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hsrlwofnpl .gt_font_normal {
+  font-weight: normal;
+}
+
+#hsrlwofnpl .gt_font_bold {
+  font-weight: bold;
+}
+
+#hsrlwofnpl .gt_font_italic {
+  font-style: italic;
+}
+
+#hsrlwofnpl .gt_super {
+  font-size: 65%;
+}
+
+#hsrlwofnpl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hsrlwofnpl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hsrlwofnpl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hsrlwofnpl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hsrlwofnpl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hsrlwofnpl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hsrlwofnpl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hsrlwofnpl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hsrlwofnpl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+
+html, body {
+  background-color: #0a0a0a !important;
+  margin: 0;
+  padding: 0;
+}
+
+.gt_table_container {
+  background-color: #0a0a0a !important;
+}
+
+.gt_heading {
+  padding-bottom: 12px !important;
+}
+
+.gt_title {
+  margin-bottom: 2px !important;
+  padding-bottom: 0 !important;
+  line-height: 1.1 !important;
+}
+
+.gt_subtitle {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.gt_title {
+  color: #00ffff !important;
+  font-family: 'Teko', 'Orbitron', sans-serif !important;
+  font-weight: bold !important;
+}
+
+.gt_subtitle {
+  color: #ffffff !important;
+}
+
+.gt_col_heading, .gt_column_spanner {
+  color: #ffffff !important;
+}
+
+.gt_group_heading {
+  color: #ffffff !important;
+}
+
+.gt_sourcenote, .gt_footnote {
+  color: #c0c0c0 !important;
+}
+</style>
+  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_title gt_font_normal" style>RECEIVERS</td>
+    </tr>
+    <tr class="gt_heading">
+      <td colspan="10" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>24 players with at least 15 plays and a full play's worth of leverage, ordered by total Contested CASE</td>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="headshot"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="player">Player</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="team">Team</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="plays">Plays</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="case">CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_case">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="contested">CONTESTED<br>CASE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_contested">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="epa">EPA</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="font-family: Teko, Orbitron, sans-serif; font-size: 17px; text-transform: uppercase;" scope="col" id="r_epa">Rank</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpvhsregfvw46mlyckzj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Smith-Njigba</td>
+<td headers="team" class="gt_row gt_left">SEA</td>
+<td headers="plays" class="gt_row gt_right">22</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+22.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+1.02</span></td>
+<td headers="r_case" class="gt_row gt_right">1</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+6.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.99</span></td>
+<td headers="r_contested" class="gt_row gt_right">1</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+25.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+1.16</span></td>
+<td headers="r_epa" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijxzvtumjhqu3zva1bwc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Lamb</td>
+<td headers="team" class="gt_row gt_left">DAL</td>
+<td headers="plays" class="gt_row gt_right">17</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+17.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+1.04</span></td>
+<td headers="r_case" class="gt_row gt_right">2</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+4.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+1.09</span></td>
+<td headers="r_contested" class="gt_row gt_right">2</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+17.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+1.00</span></td>
+<td headers="r_epa" class="gt_row gt_right">3</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f0ccavu3ppzcs51e1cuv" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Jefferson</td>
+<td headers="team" class="gt_row gt_left">MIN</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+12.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.80</span></td>
+<td headers="r_case" class="gt_row gt_right">4</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.62</span></td>
+<td headers="r_contested" class="gt_row gt_right">3</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+14.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.87</span></td>
+<td headers="r_epa" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebc5j60djpinc9elvlc5" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Kelce</td>
+<td headers="team" class="gt_row gt_left">KC</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+12.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.76</span></td>
+<td headers="r_case" class="gt_row gt_right">7</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.68</span></td>
+<td headers="r_contested" class="gt_row gt_right">4</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.63</span></td>
+<td headers="r_epa" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxrisbkwnsfhfglpohn1" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">A.Mitchell</td>
+<td headers="team" class="gt_row gt_left">NYJ</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.59</span></td>
+<td headers="r_case" class="gt_row gt_right">10</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.60</span></td>
+<td headers="r_contested" class="gt_row gt_right">5</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.58</span></td>
+<td headers="r_epa" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqgxayp6nrrpvwonksdm" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">P.Washington</td>
+<td headers="team" class="gt_row gt_left">JAX</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.46</span></td>
+<td headers="r_case" class="gt_row gt_right">12</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.50</span></td>
+<td headers="r_contested" class="gt_row gt_right">6</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.47</span></td>
+<td headers="r_epa" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Olave</td>
+<td headers="team" class="gt_row gt_left">NO</td>
+<td headers="plays" class="gt_row gt_right">23</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+17.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.75</span></td>
+<td headers="r_case" class="gt_row gt_right">3</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.51</span></td>
+<td headers="r_contested" class="gt_row gt_right">7</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+20.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.88</span></td>
+<td headers="r_epa" class="gt_row gt_right">2</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ssrjtyvnyfflobmi0mb8" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">I.Likely</td>
+<td headers="team" class="gt_row gt_left">NYG</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.57</span></td>
+<td headers="r_case" class="gt_row gt_right">9</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.81</span></td>
+<td headers="r_contested" class="gt_row gt_right">8</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.59</span></td>
+<td headers="r_epa" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vd7av3vdfs6q7ncjogac" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.McBride</td>
+<td headers="team" class="gt_row gt_left">ARI</td>
+<td headers="plays" class="gt_row gt_right">23</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.37</span></td>
+<td headers="r_case" class="gt_row gt_right">11</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.35</span></td>
+<td headers="r_contested" class="gt_row gt_right">9</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.39</span></td>
+<td headers="r_epa" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qtonvcqpixixqhc6lhnc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Adams</td>
+<td headers="team" class="gt_row gt_left">LA</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.65</span></td>
+<td headers="r_case" class="gt_row gt_right">8</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.71</span></td>
+<td headers="r_contested" class="gt_row gt_right">10</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.63</span></td>
+<td headers="r_epa" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syljognztlbghfeqyqn1" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">C.Watson</td>
+<td headers="team" class="gt_row gt_left">GB</td>
+<td headers="plays" class="gt_row gt_right">19</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.13</span></td>
+<td headers="r_case" class="gt_row gt_right">19</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.38</span></td>
+<td headers="r_contested" class="gt_row gt_right">11</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.16</span></td>
+<td headers="r_epa" class="gt_row gt_right">18</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flr9f8oqigbyroeaubxb" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.Higgins</td>
+<td headers="team" class="gt_row gt_left">CIN</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.47</span></td>
+<td headers="r_case" class="gt_row gt_right">14</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.51</span></td>
+<td headers="r_contested" class="gt_row gt_right">12</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.49</span></td>
+<td headers="r_epa" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbo339znpzrfki8hri95" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">J.Coker</td>
+<td headers="team" class="gt_row gt_left">CAR</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+12.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.68</span></td>
+<td headers="r_case" class="gt_row gt_right">6</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.55</span></td>
+<td headers="r_contested" class="gt_row gt_right">13</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+14.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.79</span></td>
+<td headers="r_epa" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxlrltvxbb2utwgjgdbt" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Vele</td>
+<td headers="team" class="gt_row gt_left">NO</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.46</span></td>
+<td headers="r_case" class="gt_row gt_right">15</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.44</span></td>
+<td headers="r_contested" class="gt_row gt_right">14</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+10.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.64</span></td>
+<td headers="r_epa" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cemcexmscsarpvwhafln" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">S.Diggs</td>
+<td headers="team" class="gt_row gt_left">WAS</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.54</span></td>
+<td headers="r_case" class="gt_row gt_right">13</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.37</span></td>
+<td headers="r_contested" class="gt_row gt_right">15</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+9.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.62</span></td>
+<td headers="r_epa" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qfcy3taaoage00rrl0cc" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">S.LaPorta</td>
+<td headers="team" class="gt_row gt_left">DET</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+7.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.47</span></td>
+<td headers="r_case" class="gt_row gt_right">16</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.42</span></td>
+<td headers="r_contested" class="gt_row gt_right">16</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+8.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.58</span></td>
+<td headers="r_epa" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fd8nwhm6pvxfyzphzl6i" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">A.St. Brown</td>
+<td headers="team" class="gt_row gt_left">DET</td>
+<td headers="plays" class="gt_row gt_right">27</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+12.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.46</span></td>
+<td headers="r_case" class="gt_row gt_right">5</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.25</span></td>
+<td headers="r_contested" class="gt_row gt_right">17</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+11.5</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.43</span></td>
+<td headers="r_epa" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hokqp6gl5xujtlqwecg8" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">T.McMillan</td>
+<td headers="team" class="gt_row gt_left">CAR</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.09</span></td>
+<td headers="r_case" class="gt_row gt_right">21</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.20</span></td>
+<td headers="r_contested" class="gt_row gt_right">18</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.06</span></td>
+<td headers="r_epa" class="gt_row gt_right">21</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xbl9mhuamzv5udb4hyzj" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Schultz</td>
+<td headers="team" class="gt_row gt_left">HOU</td>
+<td headers="plays" class="gt_row gt_right">22</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.24</span></td>
+<td headers="r_case" class="gt_row gt_right">17</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.17</span></td>
+<td headers="r_contested" class="gt_row gt_right">19</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+5.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.23</span></td>
+<td headers="r_epa" class="gt_row gt_right">17</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gkbhlytvkltv5whjo3ru" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">M.Golden</td>
+<td headers="team" class="gt_row gt_left">GB</td>
+<td headers="plays" class="gt_row gt_right">18</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+3.9</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.22</span></td>
+<td headers="r_case" class="gt_row gt_right">18</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.15</span></td>
+<td headers="r_contested" class="gt_row gt_right">20</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">20</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnzsnemdzbey5hbahdhk" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">K.Walker</td>
+<td headers="team" class="gt_row gt_left">KC</td>
+<td headers="plays" class="gt_row gt_right">16</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.12</span></td>
+<td headers="r_case" class="gt_row gt_right">20</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.3</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.05</span></td>
+<td headers="r_contested" class="gt_row gt_right">21</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.01</span></td>
+<td headers="r_epa" class="gt_row gt_right">22</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vj2fz8veorg1k5qthnjm" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Smith</td>
+<td headers="team" class="gt_row gt_left">PHI</td>
+<td headers="plays" class="gt_row gt_right">19</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+0.8</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.04</span></td>
+<td headers="r_case" class="gt_row gt_right">22</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">0.0</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.01</span></td>
+<td headers="r_contested" class="gt_row gt_right">22</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">+2.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">+0.11</span></td>
+<td headers="r_epa" class="gt_row gt_right">19</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hv3mfhadliph08b4pl4s" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">X.Hutchinson</td>
+<td headers="team" class="gt_row gt_left">HOU</td>
+<td headers="plays" class="gt_row gt_right">15</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.11</span></td>
+<td headers="r_case" class="gt_row gt_right">23</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−0.2</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.04</span></td>
+<td headers="r_contested" class="gt_row gt_right">23</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−1.1</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.07</span></td>
+<td headers="r_epa" class="gt_row gt_right">23</td></tr>
+    <tr><td headers="headshot" class="gt_row gt_center"><img src="https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tknefloqsleltfmslj2y" style="height:34px;"></td>
+<td headers="player" class="gt_row gt_left">D.Metcalf</td>
+<td headers="team" class="gt_row gt_left">PIT</td>
+<td headers="plays" class="gt_row gt_right">19</td>
+<td headers="case" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−5.7</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.30</span></td>
+<td headers="r_case" class="gt_row gt_right">24</td>
+<td headers="contested" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−2.4</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.47</span></td>
+<td headers="r_contested" class="gt_row gt_right">24</td>
+<td headers="epa" class="gt_row gt_right"><span style="display:block;padding-left:14px;">−8.6</span><span style="display:block;padding-left:14px;font-size:0.9em;color:#c0c0c0;">−0.45</span></td>
+<td headers="r_epa" class="gt_row gt_right">24</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="10">CASE  |  Total above, per target beneath. Player views are tabulations, not allocations: a completion counts in full for both passer and receiver, so these do not sum to a team total.</td>
+    </tr>
+  </tfoot>
+</table>
+</div></div>
+    </section>
+  </div>
+</main>
+<footer class="jda">
+  <div class="brandline">
+    <svg width="30" height="30" viewBox="0 0 400 400" role="img" aria-label="Jake Davis Analytics" xmlns="http://www.w3.org/2000/svg"><defs><filter id="jdaglow-foot"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="50" y="50" width="300" height="300" rx="40" fill="#00ffff" filter="url(#jdaglow-foot)"/><text x="200" y="265" font-family="Orbitron, Arial, sans-serif" font-size="145" font-weight="900" fill="#0a0a0a" text-anchor="middle">JD</text></svg>
+    <span>CASE is a Jake Davis Analytics project.</span>
+  </div>
+  <p>
+    <a href="https://jakedavisanalytics.substack.com">Jake Davis Analytics</a>
+    <span class="sep">|</span>
+    <a href="about.html">What is CASE</a>
+    <span class="sep">|</span>
+    <a href="definitions.html">Definitions</a>
+    <span class="sep">|</span>
+    <a href="https://github.com/davisj2007/nfl_case_data" target="_blank" rel="noopener">Data</a>
+  </p>
+  <p class="asof">Updated September -d, 2026  ·  through week 2, 2026  ·  model v2006-2025b</p>
+  <p class="fine">© 2026 Jake Davis Analytics. Play-by-play data from nflverse, CC BY 4.0.</p>
+</footer>
+</body>
+</html>
